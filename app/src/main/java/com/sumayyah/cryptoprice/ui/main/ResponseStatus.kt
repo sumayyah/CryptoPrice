@@ -1,4 +1,4 @@
-package com.xfinity.xhome.cryptoprice.ui.main
+package com.sumayyah.cryptoprice.ui.main
 
 enum class ResponseStatus {
     LOADING,

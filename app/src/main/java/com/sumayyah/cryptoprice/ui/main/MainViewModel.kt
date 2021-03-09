@@ -1,9 +1,8 @@
 package com.sumayyah.cryptoprice.ui.main
 
 import androidx.lifecycle.*
-import com.xfinity.xhome.cryptoprice.DefaultConfiguration
-import com.xfinity.xhome.cryptoprice.model.MarketsResponse
-import com.xfinity.xhome.cryptoprice.network.CoinApi
+import com.sumayyah.cryptoprice.model.MarketsResponse
+import com.sumayyah.cryptoprice.network.CoinApi
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

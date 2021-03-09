@@ -10,11 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.xfinity.xhome.cryptoprice.model.MarketsResponse
-import com.xfinity.xhome.cryptoprice.ui.main.CoinAdapter
-import com.xfinity.xhome.cryptoprice.ui.main.MainViewModel
-import com.xfinity.xhome.cryptoprice.ui.main.MainViewModelFactory
-import com.xfinity.xhome.cryptoprice.ui.main.ResponseStatus
+import com.sumayyah.cryptoprice.model.MarketsResponse
+import com.sumayyah.cryptoprice.ui.main.CoinAdapter
+import com.sumayyah.cryptoprice.ui.main.MainViewModel
+import com.sumayyah.cryptoprice.ui.main.MainViewModelFactory
+import com.sumayyah.cryptoprice.ui.main.ResponseStatus
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

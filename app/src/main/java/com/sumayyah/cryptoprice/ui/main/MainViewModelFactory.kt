@@ -1,8 +1,8 @@
-package com.xfinity.xhome.cryptoprice.ui.main
+package com.sumayyah.cryptoprice.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.xfinity.xhome.cryptoprice.network.CoinApi
+import com.sumayyah.cryptoprice.network.CoinApi
 
 class MainViewModelFactory(val coinApi: CoinApi): ViewModelProvider.NewInstanceFactory() {
 

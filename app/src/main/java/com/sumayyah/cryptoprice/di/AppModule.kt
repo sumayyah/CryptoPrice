@@ -3,6 +3,8 @@ package com.sumayyah.cryptoprice.di
 import android.app.Application
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.sumayyah.cryptoprice.DefaultConfiguration
+import com.sumayyah.cryptoprice.network.CoinApi
+import com.sumayyah.cryptoprice.ui.main.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
