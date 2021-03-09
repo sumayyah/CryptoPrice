@@ -3,15 +3,17 @@ package com.sumayyah.cryptoprice.ui.main
 import androidx.lifecycle.*
 import com.sumayyah.cryptoprice.model.MarketsResponse
 import com.sumayyah.cryptoprice.network.CoinApi
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MainViewModel(val coinApi: CoinApi) : ViewModel(), LifecycleObserver {
     val callStatus = MutableLiveData<ResponseData>()
 
-    val compositeDisposable = CompositeDisposable()
+    private val job = Job()
+    private val scope = CoroutineScope(job + Dispatchers.IO)
 
     init {
         callStatus.value = ResponseData(ResponseStatus.LOADING)
@@ -21,26 +23,23 @@ class MainViewModel(val coinApi: CoinApi) : ViewModel(), LifecycleObserver {
     private fun fetchCoinData() {
         callStatus.value = ResponseData(ResponseStatus.LOADING)
 
-        val disposable = executeApiCall()
-            .subscribe({ response ->
-                callStatus.value = ResponseData(ResponseStatus.SUCCESS, response)
-
-            }, { e ->
-                callStatus.value = ResponseData(ResponseStatus.ERROR, null, e)
-            })
-
-        compositeDisposable.add(disposable)
+        scope.launch {
+            try {
+                val response = executeApiCall()
+                callStatus.postValue(ResponseData(ResponseStatus.SUCCESS, response))
+            } catch (e: Exception) {
+                callStatus.postValue(ResponseData(ResponseStatus.ERROR, null, e))
+            }
+        }
     }
 
-    private fun executeApiCall() : Observable<MarketsResponse> {
+    private suspend fun executeApiCall() : MarketsResponse {
         return coinApi.getCoinListWithRx()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun disconnectListener() {
-        compositeDisposable.clear()
+        job.cancel()
     }
 }
 
