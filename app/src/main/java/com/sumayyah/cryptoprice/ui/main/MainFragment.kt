@@ -10,12 +10,14 @@ import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sumayyah.cryptoprice.MainApplication
 import com.sumayyah.cryptoprice.R
 import com.sumayyah.cryptoprice.model.MarketsResponse
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
@@ -24,9 +26,15 @@ class MainFragment : Fragment() {
     private lateinit var loadingView: ProgressBar
     private lateinit var mainContentView: ConstraintLayout
 
-//    val viewModel = ViewModelProviders.of(activity, )
+    @Inject
+    lateinit var viewModelFactory: MainViewModelFactory
 
-    val viewModel: MainViewModel by activityViewModels {  }
+    val viewModel: MainViewModel by activityViewModels { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.application as MainApplication).component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +54,28 @@ class MainFragment : Fragment() {
         listAdapter = CoinAdapter(requireContext(), arrayListOf())
         listView.adapter = listAdapter
 
+        setObservers()
+
         return view
+    }
+
+    private fun setObservers() {
+
+        viewModel.callStatus.observe(viewLifecycleOwner, Observer { responseData ->
+
+            when (responseData.responseStatus) {
+                ResponseStatus.SUCCESS -> {
+                    showSuccess(responseData.data)
+                }
+                ResponseStatus.LOADING -> {
+                    hideData()
+                    showLoading()
+                }
+                ResponseStatus.ERROR -> {
+                    showError(responseData.error?.message)
+                }
+            }
+        })
     }
 
     private fun showSuccess(data: MarketsResponse?) {

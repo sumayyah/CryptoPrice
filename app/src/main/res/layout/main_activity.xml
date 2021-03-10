@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/loading_view"/>
-
-    <include layout="@layout/content_main"/>
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.sumayyah.cryptoprice.ui.main.MainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
