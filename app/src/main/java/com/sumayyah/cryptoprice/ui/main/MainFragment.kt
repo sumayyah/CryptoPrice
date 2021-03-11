@@ -109,6 +109,7 @@ class MainFragment : Fragment() {
     }
 
     private val coinHandler : (String) -> Unit = {
+        viewModel.coinSelected(it)
         listener?.onCoinTapped(it)
     }
 

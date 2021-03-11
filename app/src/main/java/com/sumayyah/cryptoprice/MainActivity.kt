@@ -41,18 +41,20 @@ class MainActivity : AppCompatActivity(), MainFragment.MainUserActionInterface {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, mainFragment!!, "main")
+            .add(R.id.fragment_container, mainFragment!!)
+            .addToBackStack("main")
             .commit()
     }
 
     override fun onCoinTapped(label: String) {
         if (detailFragment == null) {
-            detailFragment = DetailFragment.newInstance(label)
+            detailFragment = DetailFragment()
         }
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, detailFragment!!, "detail")
+            .add(R.id.fragment_container, detailFragment!!)
+            .addToBackStack("detail")
             .commit()
     }
 }

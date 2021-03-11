@@ -14,6 +14,7 @@ import java.lang.Exception
 class MainViewModel(private val coinApi: CoinApi, private val coinDao: CoinDao) : ViewModel(), LifecycleObserver {
     val callStatus = MutableLiveData<ResponseData>()
     val currentCoinList = MutableLiveData<List<Market>>()
+    var currentCoinSelected : Market? = null
 
     private val job = Job()
     private val scope = CoroutineScope(job + Dispatchers.IO)
@@ -48,8 +49,9 @@ class MainViewModel(private val coinApi: CoinApi, private val coinDao: CoinDao) 
         return coinApi.getCoinListWithRx()
     }
 
-    fun getCoin(label: String) : Market? {
-        return coinDao.getCoinById(label)
+    fun coinSelected(label: String) {
+        val coin = coinDao.getCoinById(label)
+        currentCoinSelected = coin
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
