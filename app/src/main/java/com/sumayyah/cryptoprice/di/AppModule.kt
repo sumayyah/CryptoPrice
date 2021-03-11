@@ -3,6 +3,7 @@ package com.sumayyah.cryptoprice.di
 import android.app.Application
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.sumayyah.cryptoprice.DefaultConfiguration
+import com.sumayyah.cryptoprice.data.CoinDao
 import com.sumayyah.cryptoprice.network.CoinApi
 import com.sumayyah.cryptoprice.ui.main.MainViewModelFactory
 import dagger.Module
@@ -77,7 +78,13 @@ class AppModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideMainViewModelFactory(coinApi: CoinApi): MainViewModelFactory {
-        return MainViewModelFactory(coinApi)
+    fun provideMainViewModelFactory(coinApi: CoinApi, coinDao: CoinDao): MainViewModelFactory {
+        return MainViewModelFactory(coinApi, coinDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCoinDao(): CoinDao {
+        return CoinDao()
     }
 }

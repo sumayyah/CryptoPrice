@@ -1,6 +1,7 @@
 package com.sumayyah.cryptoprice.ui.main
 
 import androidx.lifecycle.*
+import com.sumayyah.cryptoprice.data.CoinDao
 import com.sumayyah.cryptoprice.model.MarketsResponse
 import com.sumayyah.cryptoprice.network.CoinApi
 import kotlinx.coroutines.CoroutineScope
@@ -9,7 +10,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MainViewModel(val coinApi: CoinApi) : ViewModel(), LifecycleObserver {
+class MainViewModel(private val coinApi: CoinApi, private val coinDao: CoinDao) : ViewModel(), LifecycleObserver {
     val callStatus = MutableLiveData<ResponseData>()
 
     private val job = Job()
