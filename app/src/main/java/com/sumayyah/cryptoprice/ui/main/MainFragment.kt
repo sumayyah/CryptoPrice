@@ -30,6 +30,8 @@ class MainFragment : Fragment() {
 
     val viewModel: MainViewModel by activityViewModels { viewModelFactory }
 
+    var listener: MainUserActionInterface? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity?.application as MainApplication).component.inject(this)
@@ -50,7 +52,7 @@ class MainFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         listView.layoutManager = layoutManager
 
-        listAdapter = CoinAdapter(requireContext(), arrayListOf())
+        listAdapter = CoinAdapter(requireContext(), arrayListOf(), coinHandler)
         listView.adapter = listAdapter
 
         setObservers()
@@ -104,5 +106,13 @@ class MainFragment : Fragment() {
             .setPositiveButton("Ok", null)
             .create()
             .show()
+    }
+
+    private val coinHandler : (String) -> Unit = {
+        listener?.onCoinTapped(it)
+    }
+
+    interface MainUserActionInterface {
+        fun onCoinTapped(label: String)
     }
 }

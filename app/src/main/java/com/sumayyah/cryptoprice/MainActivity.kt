@@ -12,17 +12,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sumayyah.cryptoprice.model.MarketsResponse
-import com.sumayyah.cryptoprice.ui.main.CoinAdapter
-import com.sumayyah.cryptoprice.ui.main.MainViewModel
-import com.sumayyah.cryptoprice.ui.main.MainViewModelFactory
-import com.sumayyah.cryptoprice.ui.main.ResponseStatus
+import com.sumayyah.cryptoprice.ui.detail.DetailFragment
+import com.sumayyah.cryptoprice.ui.main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainFragment.MainUserActionInterface {
 
 
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
+
+    private var mainFragment: MainFragment? = null
+    private var detailFragment: DetailFragment? = null
 
     private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
@@ -33,5 +34,25 @@ class MainActivity : AppCompatActivity() {
 
         (application as MainApplication).component.inject(this)
         lifecycle.addObserver(viewModel)
+
+        if (mainFragment == null) {
+            mainFragment = MainFragment().apply { listener = this@MainActivity }
+        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, mainFragment!!, "main")
+            .commit()
+    }
+
+    override fun onCoinTapped(label: String) {
+        if (detailFragment == null) {
+            detailFragment = DetailFragment.newInstance(label)
+        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, detailFragment!!, "detail")
+            .commit()
     }
 }
