@@ -11,12 +11,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sumayyah.cryptoprice.MainApplication
 import com.sumayyah.cryptoprice.R
-import com.sumayyah.cryptoprice.model.MarketsResponse
+import com.sumayyah.cryptoprice.model.Market
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -60,12 +59,11 @@ class MainFragment : Fragment() {
     }
 
     private fun setObservers() {
-
         viewModel.callStatus.observe(viewLifecycleOwner, Observer { responseData ->
 
             when (responseData.responseStatus) {
                 ResponseStatus.SUCCESS -> {
-                    showSuccess(responseData.data)
+                    hideLoading()
                 }
                 ResponseStatus.LOADING -> {
                     hideData()
@@ -76,12 +74,10 @@ class MainFragment : Fragment() {
                 }
             }
         })
-    }
 
-    private fun showSuccess(data: MarketsResponse?) {
-
-        hideLoading()
-        showData(data)
+        viewModel.currentCoinList.observe(viewLifecycleOwner, Observer { coinList ->
+            updateData(coinList)
+        })
     }
 
     private fun showLoading() {
@@ -92,11 +88,9 @@ class MainFragment : Fragment() {
         loadingView.visibility = View.GONE
     }
 
-    private fun showData(data: MarketsResponse?) {
+    private fun updateData(data: List<Market>?) {
         mainContentView.visibility = View.VISIBLE
-        data?.let { response ->
-            listAdapter.swapData(response.markets.get(0).subList(0, 20))
-        }
+        data?.let { listAdapter.swapData(it) }
     }
 
     private fun hideData() {

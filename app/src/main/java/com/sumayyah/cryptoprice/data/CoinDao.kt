@@ -11,6 +11,14 @@ class CoinDao {
         }
     }
 
+    fun addCoins(coins: List<Market>) {
+        synchronized(coinMap) {
+            coins.forEach {
+                coinMap[it.label] = it
+            }
+        }
+    }
+
     fun getCoinById(label: String): Market? {
         return coinMap[label]
     }
