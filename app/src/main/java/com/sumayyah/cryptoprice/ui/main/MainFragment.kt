@@ -52,7 +52,7 @@ class MainFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         listView.layoutManager = layoutManager
 
-        listAdapter = CoinAdapter(requireContext(), arrayListOf(), coinHandler)
+        listAdapter = CoinAdapter(requireContext(), arrayListOf(), coinClickHandler)
         listView.adapter = listAdapter
 
         setObservers()
@@ -108,7 +108,7 @@ class MainFragment : Fragment() {
             .show()
     }
 
-    private val coinHandler : (String) -> Unit = {
+    private val coinClickHandler : (String) -> Unit = {
         viewModel.coinSelected(it)
         listener?.onCoinTapped(it)
     }
