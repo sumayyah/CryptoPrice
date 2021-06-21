@@ -1,2 +1,3 @@
+include ':finance'
 include ':app'
 rootProject.name='CryptoPrice'
