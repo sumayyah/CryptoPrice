@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sumayyah.cryptoprice.MainApplication
@@ -25,12 +26,12 @@ class MainFragment : Fragment() {
     private lateinit var loadingView: ProgressBar
     private lateinit var mainContentView: ConstraintLayout
 
+    private val navHostController by lazy { findNavController() }
+
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
 
-    val viewModel: MainViewModel by activityViewModels { viewModelFactory }
-
-    var listener: MainUserActionInterface? = null
+    private val viewModel: MainViewModel by activityViewModels { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -110,10 +111,7 @@ class MainFragment : Fragment() {
 
     private val coinClickHandler : (String) -> Unit = {
         viewModel.coinSelected(it)
-        listener?.onCoinTapped(it)
-    }
 
-    interface MainUserActionInterface {
-        fun onCoinTapped(label: String)
+        navHostController.navigate(R.id.main_to_detail)
     }
 }
