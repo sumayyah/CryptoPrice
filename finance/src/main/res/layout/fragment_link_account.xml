@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="30dp">
+
+    <TextView
+        android:id="@+id/linkAcctTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Link your bank account"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/accountTypeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linkAcctTitle"
+        android:text="Enter account type"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/accountTypeEntryField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeTitle"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/accountNumberTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accountTypeEntryField"
+        android:text="Account number"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/accountNumberEntryField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountNumberTitle"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/routingNumberTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accountNumberEntryField"
+        android:text="Routing number"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/routingNumberEntryField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routingNumberTitle"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/linkButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/routingNumberEntryField"
+        android:text="Link Account"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
