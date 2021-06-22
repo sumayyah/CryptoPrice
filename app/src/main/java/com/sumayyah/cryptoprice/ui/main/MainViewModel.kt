@@ -29,11 +29,11 @@ class MainViewModel(private val coinApi: CoinApi, private val coinDao: CoinDao) 
 
         scope.launch {
             try {
-                val response = executeApiCall()
-                updateDao(response)
+//                val response = executeApiCall()
+//                updateDao(response)
 
                 callStatus.postValue(ResponseData(ResponseStatus.SUCCESS))
-                currentCoinList.postValue(coinDao.getAllCoins())
+//                currentCoinList.postValue(coinDao.getAllCoins())
 
             } catch (e: Exception) {
                 callStatus.postValue(ResponseData(ResponseStatus.ERROR, e))

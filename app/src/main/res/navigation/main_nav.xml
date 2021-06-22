@@ -20,4 +20,6 @@
         android:name="com.sumayyah.cryptoprice.ui.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/detail_layout"/>
+
+<!--    <include app:graph="@navigation/f"-->
 </navigation>

@@ -1,4 +1,6 @@
-include ':advice'
-include ':finance'
+//include ':account'
+include ':test'
+//include ':advice'
+//include ':finance'
 include ':app'
 rootProject.name='CryptoPrice'

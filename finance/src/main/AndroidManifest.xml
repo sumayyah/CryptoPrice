@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.finance">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application>
-        <activity android:name=".FinanceActivity">
-        </activity>
-    </application>
+    package="com.sumayyah.finance">
 
 </manifest>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    package="com.sumayyah.finance">-->
+
+<!--    <uses-permission android:name="android.permission.INTERNET" />-->
+
+<!--    <application>-->
+<!--        <activity android:name=".FinanceActivity">-->
+<!--        </activity>-->
+<!--    </application>-->
+
+<!--</manifest>-->

@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/linkAccountFragment"
-        android:name="com.example.finance.LinkAccountFragment"
+        android:name="com.sumayyah.finance.LinkAccountFragment"
         android:label="LinkAccountFragment" >
         <action
             android:id="@+id/action_linkAccountFragment_to_linkAccountConfirmedFragment"
@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/linkAccountConfirmedFragment"
-        android:name="com.example.finance.LinkAccountConfirmedFragment"
+        android:name="com.sumayyah.finance.LinkAccountConfirmedFragment"
         android:label="LinkAccountConfirmedFragment" >
         <action
             android:id="@+id/action_linkAccountConfirmedFragment_to_tradeFragment"
@@ -21,6 +21,6 @@
     </fragment>
     <fragment
         android:id="@+id/tradeFragment"
-        android:name="com.example.finance.TradeFragment"
+        android:name="com.sumayyah.finance.TradeFragment"
         android:label="TradeFragment" />
 </navigation>
