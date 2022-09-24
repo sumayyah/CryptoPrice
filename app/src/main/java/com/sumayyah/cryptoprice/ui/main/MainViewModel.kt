@@ -46,7 +46,7 @@ class MainViewModel(private val coinApi: CoinApi, private val coinDao: CoinDao) 
     }
 
     private suspend fun executeApiCall() : MarketsResponse {
-        return coinApi.getCoinListWithRx()
+        return coinApi
     }
 
     fun coinSelected(label: String) {
