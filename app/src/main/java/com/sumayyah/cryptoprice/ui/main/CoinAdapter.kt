@@ -4,10 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sumayyah.cryptoprice.R
 import com.sumayyah.cryptoprice.model.Market
-import kotlinx.android.synthetic.main.coin_list_item.view.*
 import timber.log.Timber
 
 class CoinAdapter(private val context: Context,
@@ -28,8 +28,8 @@ class CoinAdapter(private val context: Context,
 
     class CoinViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         fun bind(name: String, price: String, label: String, clickHandler: (String) -> Unit) {
-            view.name.text = name
-            view.price.text = price
+            view.findViewById<TextView>(R.id.name).text = name
+            view.findViewById<TextView>(R.id.price).text = price
 
             view.setOnClickListener {
                 clickHandler(label)
