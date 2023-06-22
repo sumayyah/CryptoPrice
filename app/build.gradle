@@ -60,8 +60,8 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp_version"
 
     //Dagger
-//    implementation "com.google.dagger:dagger:$dagger_version"
-//    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     //GSON
     implementation "com.google.code.gson:gson:$gson_version"
