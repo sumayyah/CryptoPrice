@@ -20,7 +20,6 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
 
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.main_activity)
 
-        (application as MainApplication).component.inject(this)
         lifecycle.addObserver(viewModel)
     }
 }

@@ -35,7 +35,6 @@ class MainFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity?.application as MainApplication).component.inject(this)
     }
 
     override fun onCreateView(

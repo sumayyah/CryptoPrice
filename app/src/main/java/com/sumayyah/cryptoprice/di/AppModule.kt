@@ -2,6 +2,7 @@ package com.sumayyah.cryptoprice.di
 
 import android.app.Application
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.squareup.anvil.annotations.ContributesTo
 import com.sumayyah.cryptoprice.DefaultConfiguration
 import com.sumayyah.cryptoprice.data.CoinDao
 import com.sumayyah.cryptoprice.network.CoinApi
@@ -22,15 +23,11 @@ import javax.inject.Singleton
 
 
 @Module
-class AppModule(private val application: Application) {
+@ContributesTo(AppScope::class)
+class AppModule() {
 
+    @SingleIn(AppScope::class)
     @Provides
-    @Singleton
-    fun provideApplication() = application
-
-
-    @Provides
-    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -59,8 +56,8 @@ class AppModule(private val application: Application) {
             .build()
     }
 
+    @SingleIn(AppScope::class)
     @Provides
-    @Singleton
     fun provideRetrofitClient(okHttpClient: OkHttpClient) : Retrofit {
         return Retrofit.Builder()
             .baseUrl(DefaultConfiguration.baseUrl)
@@ -70,20 +67,20 @@ class AppModule(private val application: Application) {
             .build()
     }
 
+    @SingleIn(AppScope::class)
     @Provides
-    @Singleton
     fun provideCoinApi(retrofit: Retrofit): CoinApi {
         return retrofit.create(CoinApi::class.java)
     }
 
+    @SingleIn(AppScope::class)
     @Provides
-    @Singleton
     fun provideMainViewModelFactory(coinApi: CoinApi, coinDao: CoinDao): MainViewModelFactory {
         return MainViewModelFactory(coinApi, coinDao)
     }
 
+    @SingleIn(AppScope::class)
     @Provides
-    @Singleton
     fun provideCoinDao(): CoinDao {
         return CoinDao()
     }
